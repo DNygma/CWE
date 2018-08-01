@@ -9,3 +9,14 @@ c:\users\richa\source\repos\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.dll
 c:\users\richa\source\repos\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.pdb
 c:\users\richa\source\repos\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.dll
 c:\users\richa\source\repos\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.pdb
+C:\Users\richa\Documents\GitHub\CWE\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.deps.json
+C:\Users\richa\Documents\GitHub\CWE\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.runtimeconfig.json
+C:\Users\richa\Documents\GitHub\CWE\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.runtimeconfig.dev.json
+C:\Users\richa\Documents\GitHub\CWE\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.dll
+C:\Users\richa\Documents\GitHub\CWE\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.pdb
+C:\Users\richa\Documents\GitHub\CWE\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.csprojAssemblyReference.cache
+C:\Users\richa\Documents\GitHub\CWE\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.csproj.CoreCompileInputs.cache
+C:\Users\richa\Documents\GitHub\CWE\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.AssemblyInfoInputs.cache
+C:\Users\richa\Documents\GitHub\CWE\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.AssemblyInfo.cs
+C:\Users\richa\Documents\GitHub\CWE\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.dll
+C:\Users\richa\Documents\GitHub\CWE\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.pdb

@@ -18,12 +18,14 @@ namespace CWE.Controllers
         public RequestController(CEA_DBContext context)
         {
             _context = context;
+
+            CWE.Services.Scheduling ScheduleShit = new CWE.Services.Scheduling(_context, "richard.a.anderson@gmail.com");
         }
 
         // GET: Request
         public async Task<IActionResult> Index()
         {
-            CWE.Services.Scheduling temp = new CWE.Services.Scheduling("richard.a.anderson@gmail.com");
+
             return View(await _context.Request.ToListAsync());
         }
 

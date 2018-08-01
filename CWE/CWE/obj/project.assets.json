@@ -13257,11 +13257,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\users\\richa\\source\\repos\\CWE\\CWE\\CWE.csproj",
+      "projectUniqueName": "C:\\Users\\richa\\Documents\\GitHub\\CWE\\CWE\\CWE\\CWE.csproj",
       "projectName": "CWE",
-      "projectPath": "c:\\users\\richa\\source\\repos\\CWE\\CWE\\CWE.csproj",
+      "projectPath": "C:\\Users\\richa\\Documents\\GitHub\\CWE\\CWE\\CWE\\CWE.csproj",
       "packagesPath": "C:\\Users\\richa\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\richa\\source\\repos\\CWE\\CWE\\obj\\",
+      "outputPath": "C:\\Users\\richa\\Documents\\GitHub\\CWE\\CWE\\CWE\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

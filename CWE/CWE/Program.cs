@@ -23,7 +23,6 @@ namespace CWE
             {
                 Thread.Sleep(10000);
                 XmlParser.ParseAndAddToRateList(URLString);
-                
             }
         }
         public static void Main(string[] args)

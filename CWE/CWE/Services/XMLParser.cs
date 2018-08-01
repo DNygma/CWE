@@ -87,6 +87,7 @@ namespace CWE.Services
                         break;
                 }
             }
+
             return RatesList;
         }
 

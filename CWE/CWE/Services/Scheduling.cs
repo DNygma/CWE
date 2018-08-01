@@ -10,36 +10,50 @@ using CWE.Models;
 using CWE.Services;
 using CWE.Controllers;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
+using System.Threading;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using static CWE.Services.XMLParser;
 
 namespace CWE.Services
 {
-    public class Scheduling 
+    public class Scheduling
     {
-        
-        public static List<Request> MatchingRequestList;
 
-        public Scheduling(string email)
+        private readonly CEA_DBContext _context;
+        public static List<Request> MatchingRequestList = new List<Request>();
+
+        public Scheduling(CEA_DBContext t, string email)
         {
-            //Request temp = new Request();
-            //string ReqEmail = request.Email;
-            //Console.WriteLine(context);
-            //List<Models.Request> ReqList = context.Request.Where(e => e.Email == email).ToList<Models.Request>();
+            _context = t;
+            Console.WriteLine(t);
+            Console.WriteLine(email);
+            Console.WriteLine("BREAKPOINT");
+            List<Models.Request> ReqList = _context.Request.Where(e => e.Email == email).ToList<Models.Request>();
+            bool b = false;
+            for (int index = 0; index < ReqList.Count; index++)
+            {
+                for (int count = 0; count < XMLParser.RatesList.Count; count++)
+                {
+                    if (ReqList[index].Request_Pair == XMLParser.RatesList[count].RateSymbol)
+                    {
 
-            //for (int index = 0; index < ReqList.Count; index++)
-            //{
-            //    for (int count = 0; count < XMLParser.RatesList.Count; count++)
-            //    {
-            //        if (ReqList[index].Request_Pair == XMLParser.RatesList[count].RateSymbol)
-            //        {
-            //            MatchingRequestList.Add(ReqList[index]);
-                        
-            //        }
-            //    }
-            //}
-            //Console.WriteLine(MatchingRequestList);
+                        MatchingRequestList.Add(ReqList[index]);
+                        b = true;
+                    }
+                }
+            }
+            if(b == true)
+            {
+                Console.WriteLine(MatchingRequestList);
+                Console.WriteLine("REQUEST MET");
+            }
 
-            //CWE.Services.XMLParser XmlParser = new CWE.Services.XMLParser(context);
-            //Console.WriteLine(XMLParser.RatesList);
+            //CWE.Services.XMLParser XmlParser = new CWE.Services.XMLParser(_context);
+            Console.WriteLine(XMLParser.RatesList);
         }
         // Request Req = new Request();
 
