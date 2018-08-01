@@ -1,0 +1,11 @@
+c:\users\richa\source\repos\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.csprojAssemblyReference.cache
+c:\users\richa\source\repos\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.csproj.CoreCompileInputs.cache
+c:\users\richa\source\repos\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.AssemblyInfoInputs.cache
+c:\users\richa\source\repos\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.AssemblyInfo.cs
+c:\users\richa\source\repos\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.deps.json
+c:\users\richa\source\repos\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.runtimeconfig.json
+c:\users\richa\source\repos\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.runtimeconfig.dev.json
+c:\users\richa\source\repos\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.dll
+c:\users\richa\source\repos\CWE\CWE\bin\Debug\netcoreapp2.0\CWE.pdb
+c:\users\richa\source\repos\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.dll
+c:\users\richa\source\repos\CWE\CWE\obj\Debug\netcoreapp2.0\CWE.pdb
