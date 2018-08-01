@@ -19,10 +19,10 @@ namespace CWE.Models
         [Display(Name = "Pair")]
         public string Scheduler_Pair { get; set; }
         [Display(Name = "Requesting Rate")]
-        public double Scheduler_RequestRate { get; set; }
+        public string Scheduler_RequestRate { get; set; }
         [Display(Name = "Target Rate")]
-        public double Scheduler_TargetRate { get; set; }
+        public string Scheduler_TargetRate { get; set; }
         [Display(Name = "Actual Rate")]
-        public double Scheduler_ActualRate { get; set; }
+        public string Scheduler_ActualRate { get; set; }
     }
 }

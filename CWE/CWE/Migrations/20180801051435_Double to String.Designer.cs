@@ -10,9 +10,10 @@ using System;
 namespace CWE.Migrations
 {
     [DbContext(typeof(CEA_DBContext))]
-    partial class CEA_DBContextModelSnapshot : ModelSnapshot
+    [Migration("20180801051435_Double to String")]
+    partial class DoubletoString
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

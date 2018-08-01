@@ -24,48 +24,46 @@ namespace CWE.Services
     {
 
         private readonly CEA_DBContext _context;
-        public static List<Request> MatchingRequestList = new List<Request>();
+        public static List<Request> MatchingPairRequestList = new List<Request>();
 
         public Scheduling(CEA_DBContext t, string email)
         {
             _context = t;
-            Console.WriteLine(t);
-            Console.WriteLine(email);
-            Console.WriteLine("BREAKPOINT");
             List<Models.Request> ReqList = _context.Request.Where(e => e.Email == email).ToList<Models.Request>();
-            bool b = false;
             for (int index = 0; index < ReqList.Count; index++)
             {
                 for (int count = 0; count < XMLParser.RatesList.Count; count++)
                 {
-                    if (ReqList[index].Request_Pair == XMLParser.RatesList[count].RateSymbol)
+                    if (ReqList[index].Request_TargetRte == XMLParser.RatesList[count].Bid ||
+                        ReqList[index].Request_TargetRte == XMLParser.RatesList[count].Ask)
                     {
-
-                        MatchingRequestList.Add(ReqList[index]);
-                        b = true;
+                        MatchingPairRequestList.Add(ReqList[index]);
+                        // b = true;
                     }
                 }
             }
-            if(b == true)
-            {
-                Console.WriteLine(MatchingRequestList);
-                Console.WriteLine("REQUEST MET");
-            }
+
+            //bool b = false;
+            //for (int index = 0; index < ReqList.Count; index++)
+            //{
+            //    for (int count = 0; count < XMLParser.RatesList.Count; count++)
+            //    {
+            //        if (ReqList[index].Request_Pair == XMLParser.RatesList[count].RateSymbol)
+            //        {
+
+            //            MatchingRequestList.Add(ReqList[index]);
+            //           // b = true;
+            //        }
+            //    }
+            //}
+            //if(b == true)
+            //{
+            //    Console.WriteLine(MatchingRequestList);
+            //    Console.WriteLine("REQUEST MET");
+            //}
 
             //CWE.Services.XMLParser XmlParser = new CWE.Services.XMLParser(_context);
             Console.WriteLine(XMLParser.RatesList);
         }
-        // Request Req = new Request();
-
-
-        //public CEA_DBContext CreateContext()
-        //{
-        //    var optionsBuilder = new DbContextOptionsBuilder();
-        //    optionsBuilder.UseSqlServer("Server = DESKTOP - O7AC2QN; Database = CurrencyExchangeDB; Trusted_Connection = True; MultipleActiveResultSets = true");
-        //    var context = new CEA_DBContext(optionsBuilder.Options);
-
-        //    User user = new UserFactory(context).Create(WindowsIdentity.GetCurrent());
-        //    return;
-        //}
     }
 }

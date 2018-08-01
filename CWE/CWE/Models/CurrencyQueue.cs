@@ -35,7 +35,7 @@ namespace CWE.Models
         [Display(Name = "Pair")]
         public string Queue_CurrencyPair { get; set; }
         [Display(Name = "Target Rate")]
-        public double Queue_Target { get; set; }
+        public string Queue_Target { get; set; }
         //public ICollection<Request> PacketProcessQueue { get; set; } //Request or Packet?
     }
 }

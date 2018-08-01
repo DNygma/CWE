@@ -18,7 +18,7 @@ namespace CWE.Models
         [Display(Name = "Pair")]
         public string Request_Pair { get; set; }
         [Display(Name = "Target Rate")]
-        public double Request_TargetRte { get; set; }
+        public string Request_TargetRte { get; set; }
         [Display(Name = "Email Address")]
         public string Email { get; set; }
     }
