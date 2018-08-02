@@ -1,6 +1,52 @@
-﻿
+﻿@model List<CWE.Models.Request>
+
 @{
-    ViewData["Title"] = "Input Email";
+    ViewData["Title"] = "User Requests";
 }
 
-<h2>Input User Email</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form style="margin-top: 20px;" class="w3-container" asp-controller="Request" asp-action="InputEmail" method="get">
+            <h3>Enter your email:</h3>
+
+            <div style="margin-top: 15px;" class="form-row">
+                <div class="col-sm-3">
+                    <label>
+                        Email
+                    </label>
+                </div>
+                <div class="col">
+                    <input type="text" name="email" value="@ViewBag.email">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <input type="submit" value="Input Email" class="btn btn-default" />
+                </div>    
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<br />
+<br />
+<section>
+    <div style="margin-bottom: 100px;" class="container">
+        <table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Request_Pair)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Request_TargetRte)
+                </td>
+            </tr>
+        }
+        </table>
+    </div>
+</section>

@@ -39,11 +39,6 @@ namespace CWE.Controllers
             schedThread.Start();
         }
 
-        //public RequestController()
-        //{
-
-        //}
-
         // GET: Request
         public async Task<IActionResult> Index()
         {
@@ -51,9 +46,10 @@ namespace CWE.Controllers
             return View(await _context.Request.ToListAsync());
         }
 
-        public ActionResult InputEmail()
+        public IActionResult InputEmail(string email)
         {
-            return View();
+            var records = _context.Request.Where(e => e.Email == email).ToList<Request>();
+            return View(records);
         }
 
         // GET: Request/Details/5
@@ -98,7 +94,7 @@ namespace CWE.Controllers
                 };
                 AddQueueTop(newReq);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
             }
             return View(request);
         }
@@ -149,7 +145,7 @@ namespace CWE.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Create));
             }
             return View(request);
         }
@@ -180,7 +176,7 @@ namespace CWE.Controllers
             var request = await _context.Request.SingleOrDefaultAsync(m => m.Request_ID == id);
             _context.Request.Remove(request);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Create));
         }
 
         private bool RequestExists(string id)
