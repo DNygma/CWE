@@ -20,7 +20,7 @@ namespace CWE.Services
 
     public class XMLParser
     {
-        private readonly CEA_DBContext _context;
+        //private readonly CEA_DBContext _context;
         public static List<Rate> RatesList = new List<Rate>();
         public List<Rate> ParseAndAddToRateList(string URLString)
         {
@@ -91,9 +91,9 @@ namespace CWE.Services
             return RatesList;
         }
 
-        public XMLParser(CEA_DBContext context)
+        public XMLParser()
         {
-            _context = context;
+           // _context = context;
         }
     }
 }

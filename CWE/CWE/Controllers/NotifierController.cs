@@ -16,6 +16,7 @@ namespace CWE.Controllers
         public NotifierController(CEA_DBContext context)
         {
             _context = context;
+           // CWE.Services.Scheduling ScheduleShit = new CWE.Services.Scheduling(_context, "richard.a.anderson@gmail.com");
         }
 
         // GET: Notifier

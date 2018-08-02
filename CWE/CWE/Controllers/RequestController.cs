@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CWE.Models;
 using static CWE.Models.CurrencyQueue;
 using System.Collections;
+using System.Threading;
 
 namespace CWE.Controllers
 {
@@ -15,11 +16,28 @@ namespace CWE.Controllers
     {
         private readonly CEA_DBContext _context;
 
+        public void CallSchedulerThread()
+        {
+            CEA_DBContext context = new CEA_DBContext();
+            context = _context;
+            CWE.Services.Scheduling ScheduleShit = new CWE.Services.Scheduling(_context);
+            
+
+            while (true)
+            {
+                Thread.Sleep(10000);
+                ScheduleShit.RunScheduler(context);
+            }
+        }
+
         public RequestController(CEA_DBContext context)
         {
             _context = context;
-
-            CWE.Services.Scheduling ScheduleShit = new CWE.Services.Scheduling(_context, "richard.a.anderson@gmail.com");
+            CWE.Services.Scheduling ScheduleShit = new CWE.Services.Scheduling(_context);
+            ThreadStart scheduleref = new ThreadStart(CallSchedulerThread);
+            Thread schedThread = new Thread(scheduleref);
+            schedThread.Name = "Currency Scheduler Thread";
+            schedThread.Start();
         }
 
         // GET: Request

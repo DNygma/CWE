@@ -5,26 +5,32 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using CWE.Models;
+using CWE.Services;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace CWE 
 {
     public class Program
     {
-        public static readonly CEA_DBContext _context;
         public static void CallToChildThread()
         {
             string URLString = "https://rates.fxcm.com/RatesXML";
-            CWE.Services.XMLParser XmlParser = new CWE.Services.XMLParser(_context);
+            CWE.Services.XMLParser XmlParser = new CWE.Services.XMLParser();
             while (true)
             {
                 Thread.Sleep(10000);
                 XmlParser.ParseAndAddToRateList(URLString);
             }
         }
+        //public static void CallSchedulerThread()
+        //{
+        //        Services.Scheduling runScheduler = new Services.Scheduling(_context);
+        //}
+
         public static void Main(string[] args)
         {
             // String URLString = "https://rates.fxcm.com/RatesXML";
@@ -34,12 +40,14 @@ namespace CWE
             childThread.Name = "XML Parsing Thread";
             childThread.Start();
 
+           
+
             BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
+                .UseStartup<Startup>() 
                 .Build();
     }
 }

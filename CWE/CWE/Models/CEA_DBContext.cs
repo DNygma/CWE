@@ -27,6 +27,10 @@ namespace CWE.Models
 
         }
 
+        public CEA_DBContext()
+        {
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

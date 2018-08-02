@@ -17,53 +17,109 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using static CWE.Services.XMLParser;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CWE.Services
 {
-    public class Scheduling
+    public class Scheduling 
     {
-
         private readonly CEA_DBContext _context;
         public static List<Request> MatchingPairRequestList = new List<Request>();
+        List<Models.Request> ReqList = null;
 
-        public Scheduling(CEA_DBContext t, string email)
+        public Scheduling(CEA_DBContext context)
         {
-            _context = t;
-            List<Models.Request> ReqList = _context.Request.Where(e => e.Email == email).ToList<Models.Request>();
-            for (int index = 0; index < ReqList.Count; index++)
+            _context = context;
+            RunScheduler(_context);
+        }
+
+        public void RunScheduler(CEA_DBContext context)
+        {
+            CEA_DBContext schedulerDB = new CEA_DBContext();
+            schedulerDB = context;
+            if (schedulerDB.Request != null)
             {
-                for (int count = 0; count < XMLParser.RatesList.Count; count++)
+                List<Request> allRequests = (from req in schedulerDB.Request select req).ToList();
+                if (schedulerDB.Request != null)
                 {
-                    if (ReqList[index].Request_TargetRte == XMLParser.RatesList[count].Bid ||
-                        ReqList[index].Request_TargetRte == XMLParser.RatesList[count].Ask)
+                    for (int index = 0; index < allRequests.Count; index++)
                     {
-                        MatchingPairRequestList.Add(ReqList[index]);
-                        // b = true;
+                        for (int count = 0; count < XMLParser.RatesList.Count; count++)
+                        {
+                            if (allRequests[index].Request_TargetRte == XMLParser.RatesList[count].Bid ||
+                                allRequests[index].Request_TargetRte == XMLParser.RatesList[count].Ask)
+                            {
+                                MatchingPairRequestList.Add(ReqList[index]);
+                                // b = true;
+                            }
+                        }
                     }
                 }
             }
-
-            //bool b = false;
-            //for (int index = 0; index < ReqList.Count; index++)
-            //{
-            //    for (int count = 0; count < XMLParser.RatesList.Count; count++)
-            //    {
-            //        if (ReqList[index].Request_Pair == XMLParser.RatesList[count].RateSymbol)
-            //        {
-
-            //            MatchingRequestList.Add(ReqList[index]);
-            //           // b = true;
-            //        }
-            //    }
-            //}
-            //if(b == true)
-            //{
-            //    Console.WriteLine(MatchingRequestList);
-            //    Console.WriteLine("REQUEST MET");
-            //}
-
-            //CWE.Services.XMLParser XmlParser = new CWE.Services.XMLParser(_context);
-            Console.WriteLine(XMLParser.RatesList);
         }
+
+        //public Scheduling(CEA_DBContext t)
+        //{
+        //    _context = t;
+
+        //List<Models.Request> ReqList = _context.Request.Where(e => e.Email == email).ToList<Models.Request>();
+        //for (int index = 0; index < ReqList.Count; index++)
+        //{
+        //    for (int count = 0; count < XMLParser.RatesList.Count; count++)
+        //    {
+        //        if (ReqList[index].Request_TargetRte == XMLParser.RatesList[count].Bid ||
+        //            ReqList[index].Request_TargetRte == XMLParser.RatesList[count].Ask)
+        //        {
+        //            MatchingPairRequestList.Add(ReqList[index]);
+        //            // b = true;
+        //        }
+        //    }
+        //}
+        //    //var allUsers = t.User.ToList<User>();
+        //    var allRequests = t.Request.ToList<Request>();
+        //    if (t.Request != null)
+        //    {
+        //        List<Models.Request> ReqList = null; //= allUsers.Where(e => e.User_ID == ).ToList<Models.Request>();
+        //        for (int index = 0; index < allRequests.Count; index++)
+        //        {
+        //            for (int count = 0; count < XMLParser.RatesList.Count; count++)
+        //            {
+        //                if (allRequests[index].Request_TargetRte == XMLParser.RatesList[count].Bid ||
+        //                    allRequests[index].Request_TargetRte == XMLParser.RatesList[count].Ask)
+        //                {
+        //                    MatchingPairRequestList.Add(ReqList[index]);
+        //                    // b = true;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+
+
+
+        //bool b = false;
+        //for (int index = 0; index < ReqList.Count; index++)
+        //{
+        //    for (int count = 0; count < XMLParser.RatesList.Count; count++)
+        //    {
+        //        if (ReqList[index].Request_Pair == XMLParser.RatesList[count].RateSymbol)
+        //        {
+
+        //            MatchingRequestList.Add(ReqList[index]);
+        //           // b = true;
+        //        }
+        //    }
+        //}
+        //if(b == true)
+        //{
+        //    Console.WriteLine(MatchingRequestList);
+        //    Console.WriteLine("REQUEST MET");
+        //}
+
+        //CWE.Services.XMLParser XmlParser = new CWE.Services.XMLParser(_context);
+        //    Console.WriteLine(XMLParser.RatesList);
+        //}
+
     }
 }

@@ -10,7 +10,7 @@ namespace CWE.Models
     {
         public Scheduler()
         {
-
+            
         }
 
         [Key]

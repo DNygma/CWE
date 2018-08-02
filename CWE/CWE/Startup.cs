@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CWE.Models;
+using CWE.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CWE
 {
-    public class Startup
+    public class Startup 
     {
         public Startup(IConfiguration configuration)
         {
@@ -25,7 +26,7 @@ namespace CWE
         {
             services.AddScoped<DbContext, CEA_DBContext>();
             services.AddDbContext<CEA_DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+
             services.AddMvc();
         }
 
