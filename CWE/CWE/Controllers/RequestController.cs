@@ -15,31 +15,10 @@ namespace CWE.Controllers
     public class RequestController : Controller
     {
         private readonly CEA_DBContext _context;
-
-        public void CallSchedulerThread()
-        {
-            CEA_DBContext context;
-            context = _context;
-            // Start Scheduling
-            CWE.Services.Scheduling Start = new CWE.Services.Scheduling(_context);
-
-            while (true)
-            {
-                // Sleep scheduler for 10 seconds to give the parser some time to do work
-                Thread.Sleep(10000);
-                Start.RunScheduler(context);
-            }
-        }
-
+        
         public RequestController(CEA_DBContext context)
         {
             _context = context;
-            // Put in place to call a seperate thread to allow our requests to be simultaneously
-                // running while user is doing other tasks
-            ThreadStart scheduleref = new ThreadStart(CallSchedulerThread);
-            Thread schedThread = new Thread(scheduleref);
-            schedThread.Name = "Currency Scheduler Thread";
-            schedThread.Start();
         }
 
         // GET: Request
@@ -152,7 +131,7 @@ namespace CWE.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Create));
+                return RedirectToAction(nameof(InputEmail));
             }
             return View(request);
         }
@@ -183,7 +162,7 @@ namespace CWE.Controllers
             var request = await _context.Request.SingleOrDefaultAsync(m => m.Request_ID == id);
             _context.Request.Remove(request);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Create));
+            return RedirectToAction(nameof(InputEmail));
         }
 
         private bool RequestExists(string id)

@@ -58,17 +58,18 @@ namespace CWE.Services
                                 // If list contains values go ahead and push them out as they come in
                                 if(MatchingPairRequestList.Count > 0)
                                 {
-                                    for (int i = 0; i < MatchingPairRequestList.Count; i++)
+                                    int tempCount = MatchingPairRequestList.Count();
+                                    for (int i = 0; i < tempCount; i++)
                                     {
                                         UserEmail = MatchingPairRequestList[i].Email;
                                         Pair = MatchingPairRequestList[i].Request_Pair;
-                                        MatchingPairRequestList.RemoveAt(i);
                                         // Notify user 
                                         Notifier.EmailNotification(UserEmail, Pair);
                                         UserEmail = null; Pair = null;
                                     }
-                                    // Clear list
+                                    // Clear list + Reset Count
                                     MatchingPairRequestList.Clear();
+                                    tempCount = 0;
                                 }
                             }
                         }

@@ -1,0 +1,42 @@
+﻿@model CWE.Models.Scheduler
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Scheduler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Scheduler_Pair)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Scheduler_Pair)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Scheduler_RequestRate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Scheduler_RequestRate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Scheduler_TargetRate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Scheduler_TargetRate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Scheduler_ActualRate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Scheduler_ActualRate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Scheduler_UserID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
