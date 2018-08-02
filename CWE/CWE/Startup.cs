@@ -24,6 +24,7 @@ namespace CWE
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Set up Services for CEA_DBContext
             services.AddScoped<DbContext, CEA_DBContext>();
             services.AddDbContext<CEA_DBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 

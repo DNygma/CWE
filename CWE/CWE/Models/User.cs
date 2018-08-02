@@ -10,7 +10,10 @@ namespace CWE.Models
     {
         public User()
         {
+
         }
+
+
         [Key]
         [Display(Name = "ID")]
         public string User_ID { get; set; }

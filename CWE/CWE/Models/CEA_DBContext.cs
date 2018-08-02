@@ -13,6 +13,7 @@ namespace CWE.Models
         public virtual DbSet<Notifier> Notifier { get; set; }
         public virtual DbSet<CurrencyQueue> CurrencyQueue { get; set; }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -22,18 +23,21 @@ namespace CWE.Models
 
         }
 
+
         public CEA_DBContext(DbContextOptions<CEA_DBContext> options) : base(options)
         {
 
         }
 
+
         public CEA_DBContext()
         {
+
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);

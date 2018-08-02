@@ -9,22 +9,26 @@ namespace CWE.Models
 {
     public class CurrencyQueue
     {
-        public CurrencyQueue()
+        CEA_DBContext _context;
+        public CurrencyQueue(CEA_DBContext context)
         {
-
+            _context = context;
         }
         
+
+        // Add new request item to the top of the quee
         public static void AddQueueTop(CurrencyQueue newReq)
         {
             Queue<CurrencyQueue> q = new Queue<CurrencyQueue>();
-            Console.Write("OBJECT ADDED TO TOP OF QUEUE");
             q.Enqueue(newReq);
         }
 
+        // Remove item from the top of the queue
         public static void RemoveQueueTop(Queue q)
         {
             q.Dequeue();
         }
+
 
         [Key]
         [Display(Name = "ID")]

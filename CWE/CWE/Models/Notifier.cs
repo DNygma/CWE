@@ -9,27 +9,31 @@ namespace CWE.Models
 {
     public class Notifier
     {
-        public Notifier()
+        CEA_DBContext _context;
+        public Notifier(CEA_DBContext context)
         {
+            _context = context;
         }
 
+        // This is the email notification sytsem that takes in the users email and pair
+            // notifying them when a specific rate has been met
         public static void EmailNotification(string email, string pair)
         {
-            MailMessage mail = new MailMessage("CEA.Notification@gmail.com", email)
+            // Set email message with Curreny Subject
+            MailMessage mail = new MailMessage("cea.notification@gmail.com", email)
             {
                 Subject = "Currency Report"
             };
+            // Set email body
             string Body = "Your currency request for " + pair + " has reached the target rate";
             mail.Body = Body;
-
             mail.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient
-            {
-                Host = "smtp.gmail.com", 
-                Credentials = new System.Net.NetworkCredential("CEA.Notification@gmail.com", "PassWord!@"),
-
+            // Set up SMTP Client for Gmail Use Only
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587) {
+                Credentials = new System.Net.NetworkCredential("cea.notification@gmail.com", "PassWord!@"),
                 EnableSsl = true
             };
+            // Send email to user
             smtp.Send(mail);
             mail = null;
             smtp = null;

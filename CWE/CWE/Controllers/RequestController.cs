@@ -20,11 +20,12 @@ namespace CWE.Controllers
         {
             CEA_DBContext context;
             context = _context;
+            // Start Scheduling
             CWE.Services.Scheduling Start = new CWE.Services.Scheduling(_context);
-            
 
             while (true)
             {
+                // Sleep scheduler for 10 seconds to give the parser some time to do work
                 Thread.Sleep(10000);
                 Start.RunScheduler(context);
             }
@@ -33,6 +34,8 @@ namespace CWE.Controllers
         public RequestController(CEA_DBContext context)
         {
             _context = context;
+            // Put in place to call a seperate thread to allow our requests to be simultaneously
+                // running while user is doing other tasks
             ThreadStart scheduleref = new ThreadStart(CallSchedulerThread);
             Thread schedThread = new Thread(scheduleref);
             schedThread.Name = "Currency Scheduler Thread";
@@ -46,6 +49,8 @@ namespace CWE.Controllers
             return View(records);
         }
 
+        // This class is created to output all requests from a single user
+            // allowing them to edit and delete their own requests
         public IActionResult InputEmail(string email)
         {
             var records = _context.Request.Where(e => e.Email == email).ToList<Request>();
@@ -86,7 +91,9 @@ namespace CWE.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(request);
-                CurrencyQueue newReq = new CurrencyQueue
+                // Add requests to a new Currency Queue in order that they are received
+                    // Creating new CurrenyQueue object
+                CurrencyQueue newReq = new CurrencyQueue(_context)
                 {
                     Queue_UserID = request.Request_ID,
                     Queue_CurrencyPair = request.Request_Pair,

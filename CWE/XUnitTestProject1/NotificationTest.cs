@@ -21,7 +21,7 @@ namespace XUnitTestProject1
         {
             string temp1 = "email@gmail.com";
             string temp2 = "Complete";
-            var not = new Notifier();
+            var not = new Notifier(_context);
             not.Notifier_ID = temp1;
             not.Notifier_NotificationString = temp2;
         }

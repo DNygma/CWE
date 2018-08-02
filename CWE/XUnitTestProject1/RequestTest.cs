@@ -16,7 +16,7 @@ namespace XUnitTestProject1
             _context = new CEA_DBContext();
         }
 
-        [Fact(DisplayName = "User DB and Email Requests")]
+        [Fact(DisplayName = "User DB and Email Requests and Database")]
         public void Test1()
         {
             string temp = "email@gmail.com";

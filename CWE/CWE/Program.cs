@@ -16,31 +16,29 @@ namespace CWE
 {
     public class Program
     {
-        public static void CallToChildThread()
+        // New thread to parse the xml file throughout system
+        public static void XMLParsingThread()
         {
+            // Read in XML page
             string URLString = "https://rates.fxcm.com/RatesXML";
+            // Create new parsing object
             CWE.Services.XMLParser XmlParser = new CWE.Services.XMLParser();
             while (true)
             {
                 Thread.Sleep(10000);
+                // Parse and add to Rate List
                 XmlParser.ParseAndAddToRateList(URLString);
             }
         }
-        //public static void CallSchedulerThread()
-        //{
-        //        Services.Scheduling runScheduler = new Services.Scheduling(_context);
-        //}
 
         public static void Main(string[] args)
         {
-            // String URLString = "https://rates.fxcm.com/RatesXML";
-            ThreadStart childref = new ThreadStart(CallToChildThread);
-            Console.WriteLine("In Main: Creating the Child thread");
-            Thread childThread = new Thread(childref);
-            childThread.Name = "XML Parsing Thread";
-            childThread.Start();
-
-           
+            // Create thread
+            ThreadStart parse = new ThreadStart(XMLParsingThread);
+            Console.WriteLine("In Main: Creating the XML Parsing Thread");
+            Thread parseThread = new Thread(parse);
+            parseThread.Name = "XML Parsing Thread";
+            parseThread.Start();
 
             BuildWebHost(args).Run();
         }
