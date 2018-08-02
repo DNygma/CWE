@@ -26,6 +26,7 @@ namespace CWE.Services
         private readonly CEA_DBContext _context;
         public static List<Request> MatchingPairRequestList = new List<Request>();
         List<Models.Request> ReqList = null;
+        public List<String> EmailPairList = new List<String>();
 
         public Scheduling(CEA_DBContext context)
         {
@@ -35,6 +36,8 @@ namespace CWE.Services
 
         public void RunScheduler(CEA_DBContext context)
         {
+            string UserEmail = "";
+            string Pair = "";
             using (var schedulerDB = new CEA_DBContext())
             {
                 
@@ -50,19 +53,23 @@ namespace CWE.Services
                                 allRequests[index].Request_TargetRte == XMLParser.RatesList[count].Ask)
                             {
                                 MatchingPairRequestList.Add(ReqList[index]);
-                                // b = true;
+                                if(MatchingPairRequestList.Count > 0)
+                                {
+                                    for (int i = 0; i < MatchingPairRequestList.Count; i++)
+                                    {
+                                        UserEmail = MatchingPairRequestList[i].Email;
+                                        Pair = MatchingPairRequestList[i].Request_Pair;
+                                        Notifier.EmailNotification(UserEmail, Pair);
+                                    }
+                                    MatchingPairRequestList.Clear();
+                                }
                             }
                         }
                     }
                 }
             }
-            //schedulerDB = context;
         }
-
-        //public Scheduling(CEA_DBContext t)
-        //{
-        //    _context = t;
-
+        
         //List<Models.Request> ReqList = _context.Request.Where(e => e.Email == email).ToList<Models.Request>();
         //for (int index = 0; index < ReqList.Count; index++)
         //{
@@ -75,51 +82,6 @@ namespace CWE.Services
         //            // b = true;
         //        }
         //    }
-        //}
-        //    //var allUsers = t.User.ToList<User>();
-        //    var allRequests = t.Request.ToList<Request>();
-        //    if (t.Request != null)
-        //    {
-        //        List<Models.Request> ReqList = null; //= allUsers.Where(e => e.User_ID == ).ToList<Models.Request>();
-        //        for (int index = 0; index < allRequests.Count; index++)
-        //        {
-        //            for (int count = 0; count < XMLParser.RatesList.Count; count++)
-        //            {
-        //                if (allRequests[index].Request_TargetRte == XMLParser.RatesList[count].Bid ||
-        //                    allRequests[index].Request_TargetRte == XMLParser.RatesList[count].Ask)
-        //                {
-        //                    MatchingPairRequestList.Add(ReqList[index]);
-        //                    // b = true;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
-
-
-
-        //bool b = false;
-        //for (int index = 0; index < ReqList.Count; index++)
-        //{
-        //    for (int count = 0; count < XMLParser.RatesList.Count; count++)
-        //    {
-        //        if (ReqList[index].Request_Pair == XMLParser.RatesList[count].RateSymbol)
-        //        {
-
-        //            MatchingRequestList.Add(ReqList[index]);
-        //           // b = true;
-        //        }
-        //    }
-        //}
-        //if(b == true)
-        //{
-        //    Console.WriteLine(MatchingRequestList);
-        //    Console.WriteLine("REQUEST MET");
-        //}
-
-        //CWE.Services.XMLParser XmlParser = new CWE.Services.XMLParser(_context);
-        //    Console.WriteLine(XMLParser.RatesList);
         //}
 
     }

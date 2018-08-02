@@ -14,14 +14,13 @@ namespace CWE.Models
 
         }
 
-        public static void EmailNotification()
+        public static void EmailNotification(string email, string pair)
         {
-
-            MailMessage mail = new MailMessage("CEA.Notification@gmail.com", "d97nygma@gmail.com")
+            MailMessage mail = new MailMessage("CEA.Notification@gmail.com", email)
             {
                 Subject = "Currency Report"
             };
-            string Body = "Your curreny request has reached the target rate";
+            string Body = "Your currency request for " + pair + " has reached the target rate";
             mail.Body = Body;
 
             mail.IsBodyHtml = true;
