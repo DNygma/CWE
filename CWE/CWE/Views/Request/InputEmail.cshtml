@@ -36,8 +36,8 @@
 <section>
     <div style="margin-bottom: 100px;" class="container">
         <table>
-        @foreach (var item in Model)
-        {
+            @foreach (var item in Model)
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Request_Pair)
@@ -45,8 +45,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Request_TargetRte)
                 </td>
-            </tr>
-        }
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Request_ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Request_ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Request_ID">Delete</a>
+                </td>
+            </tr>   
+            }
         </table>
     </div>
+
 </section>

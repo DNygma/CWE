@@ -40,10 +40,10 @@ namespace CWE.Controllers
         }
 
         // GET: Request
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string email)
         {
-
-            return View(await _context.Request.ToListAsync());
+            var records = await _context.Request.Where(e => e.Email == email).ToListAsync();
+            return View(records);
         }
 
         public IActionResult InputEmail(string email)
