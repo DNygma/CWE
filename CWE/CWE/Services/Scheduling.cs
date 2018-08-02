@@ -30,20 +30,18 @@ namespace CWE.Services
         public Scheduling(CEA_DBContext context)
         {
             _context = context;
-            CEA_DBContext schedulerDB = new CEA_DBContext();
-            schedulerDB = _context;
             RunScheduler(_context);
         }
 
         public void RunScheduler(CEA_DBContext context)
         {
-            //CEA_DBContext schedulerDB = new CEA_DBContext();
-            //schedulerDB = context;
-            if (context.Request != null)
+            using (var schedulerDB = new CEA_DBContext())
             {
-                List<Request> allRequests = (from req in context.Request select req).ToList();
-                if (context.Request != null)
+                
+                if (schedulerDB.Request != null)
                 {
+                    List<Request> allRequests = (from req in schedulerDB.Request select req).ToList();
+
                     for (int index = 0; index < allRequests.Count; index++)
                     {
                         for (int count = 0; count < XMLParser.RatesList.Count; count++)
@@ -58,6 +56,7 @@ namespace CWE.Services
                     }
                 }
             }
+            //schedulerDB = context;
         }
 
         //public Scheduling(CEA_DBContext t)

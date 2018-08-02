@@ -18,22 +18,21 @@ namespace CWE.Controllers
 
         public void CallSchedulerThread()
         {
-            CEA_DBContext context = new CEA_DBContext();
+            CEA_DBContext context;
             context = _context;
-            CWE.Services.Scheduling ScheduleShit = new CWE.Services.Scheduling(_context);
+            CWE.Services.Scheduling Start = new CWE.Services.Scheduling(_context);
             
 
             while (true)
             {
                 Thread.Sleep(10000);
-                ScheduleShit.RunScheduler(context);
+                Start.RunScheduler(context);
             }
         }
 
         public RequestController(CEA_DBContext context)
         {
             _context = context;
-            CWE.Services.Scheduling ScheduleShit = new CWE.Services.Scheduling(_context);
             ThreadStart scheduleref = new ThreadStart(CallSchedulerThread);
             Thread schedThread = new Thread(scheduleref);
             schedThread.Name = "Currency Scheduler Thread";
