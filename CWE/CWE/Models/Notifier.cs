@@ -11,7 +11,6 @@ namespace CWE.Models
     {
         public Notifier()
         {
-
         }
 
         public static void EmailNotification(string email, string pair)

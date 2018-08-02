@@ -10,21 +10,9 @@ namespace CWE.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult Help()
         {
             ViewData["Message"] = "CW Currency Exchange - Currncy Rate Application";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
 
             return View();
         }

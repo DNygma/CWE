@@ -9,7 +9,6 @@ namespace CWE.Services
     {
         private readonly CEA_DBContext _context;
         public static List<Request> MatchingPairRequestList = new List<Request>();
-        List<Models.Request> ReqList = null;
         public List<String> EmailPairList = new List<String>();
 
         public Scheduling(CEA_DBContext context)
@@ -41,7 +40,7 @@ namespace CWE.Services
                             if (allRequests[index].Request_TargetRte == XMLParser.RatesList[count].Bid ||
                                 allRequests[index].Request_TargetRte == XMLParser.RatesList[count].Ask)
                             {
-                                MatchingPairRequestList.Add(ReqList[index]);
+                                MatchingPairRequestList.Add(allRequests[index]);
                                 if(MatchingPairRequestList.Count > 0)
                                 {
                                     for (int i = 0; i < MatchingPairRequestList.Count; i++)

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace CWE.Migrations
+namespace not.Migrations
 {
     [DbContext(typeof(CEA_DBContext))]
     partial class CEA_DBContextModelSnapshot : ModelSnapshot
