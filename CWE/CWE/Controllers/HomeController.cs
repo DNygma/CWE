@@ -15,9 +15,9 @@ namespace CWE.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Help()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = "CW Currency Exchange - Currncy Rate Application";
 
             return View();
         }

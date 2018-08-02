@@ -14,6 +14,5 @@ namespace CWE.Models
         [Key]
         [Display(Name = "ID")]
         public string User_ID { get; set; }
-        
     }
 }

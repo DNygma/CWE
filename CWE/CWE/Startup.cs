@@ -40,7 +40,7 @@ namespace CWE
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Request/Error");
             }
 
             app.UseStaticFiles();
@@ -49,7 +49,7 @@ namespace CWE
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Request}/{action=Create}/{id?}");
             });
         }
     }

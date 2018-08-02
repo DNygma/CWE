@@ -26,7 +26,7 @@ namespace CWE.Models
             mail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient
             {
-                Host = "smtp.gmail.com", //Or Your SMTP Server Address
+                Host = "smtp.gmail.com", 
                 Credentials = new System.Net.NetworkCredential("CEA.Notification@gmail.com", "PassWord!@"),
 
                 EnableSsl = true

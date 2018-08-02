@@ -24,9 +24,7 @@ namespace CWE.Services
         public static List<Rate> RatesList = new List<Rate>();
         public List<Rate> ParseAndAddToRateList(string URLString)
         {
-            //String URLString = "https://rates.fxcm.com/RatesXML";
             XmlTextReader reader = new XmlTextReader(URLString);
-            //List<Rate> RatesList = new List<Rate>();
 
             Rate rate = new Rate();
             string PrevValue = "";
@@ -79,8 +77,6 @@ namespace CWE.Services
                         {
                             rate.Last = PrevValue;
                             RatesList.Add(rate);
-                            //rate.Clean();
-
                         }
                         Console.Write("</" + reader.Name);
                         Console.WriteLine(">");
@@ -93,7 +89,6 @@ namespace CWE.Services
 
         public XMLParser()
         {
-           // _context = context;
         }
     }
 }

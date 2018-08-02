@@ -39,11 +39,21 @@ namespace CWE.Controllers
             schedThread.Start();
         }
 
+        //public RequestController()
+        //{
+
+        //}
+
         // GET: Request
         public async Task<IActionResult> Index()
         {
 
             return View(await _context.Request.ToListAsync());
+        }
+
+        public ActionResult InputEmail()
+        {
+            return View();
         }
 
         // GET: Request/Details/5
